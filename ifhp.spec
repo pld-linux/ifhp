@@ -45,7 +45,7 @@ Jest to podstawowy filtr dla menad¿era LPRng.
 
 %build
 %{__gettextize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure \
 	--with-filterdir=%{_libdir}/%{lpfiltersdir}
