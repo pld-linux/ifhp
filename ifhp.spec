@@ -1,8 +1,8 @@
 Summary:	print filter for hp postscript, text, and other printers
 Name:		ifhp
-Version:	3.3.20
+Version:	3.3.21
 Release:	1
-License:	OpenSource
+License:	GPL and Artistic License
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
