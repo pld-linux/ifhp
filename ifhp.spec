@@ -44,9 +44,9 @@ Jest to podstawowy filtr dla menad¿era LPRng.
 %patch1 -p1
 
 %build
+%{__gettextize}
 aclocal
 %{__autoconf}
-%{__gettextize}
 %configure \
 	--with-filterdir=%{_libdir}/%{lpfiltersdir}
 %{__make}
@@ -61,12 +61,13 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 mv -f $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf.sample .
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf
 
-%find_lang %{name}
+#%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+#%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
 %doc README ifhp.conf.sample HOWTO/*.html
 %attr(755,root,root) %{_libdir}/%{lpfiltersdir}/*
