@@ -29,8 +29,10 @@ LDFLAGS="-s"; export LDFLAGS
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_libexecdir},%{_mandir}/man8}
+
 %{__make} INSTALL_PREFIX=$RPM_BUILD_ROOT install
 mv -f $RPM_BUILD_ROOT/%{_sysconfdir}/ifhp.conf.sample .
+
 gzip -9nf HOWTO/*.html README ifhp.conf.sample \
 	$RPM_BUILD_ROOT%{_mandir}/man8/*
 
@@ -41,6 +43,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz
 %doc HOWTO/*.gz
-%attr(644,root,root) %config(noreplace) %{_sysconfdir}/ifhp.conf
 %attr(755,root,root)  %{_libexecdir}/filters/*
-%{_mandir}/*/*.gz
+%config(noreplace) %{_sysconfdir}/ifhp.conf
+%{_mandir}/*/*
