@@ -9,7 +9,7 @@ Source0:	ftp://ftp.astart.com/pub/LPRng/LPRng/FILTERS/%{name}-%{version}.tgz
 URL:		http://www.astart.com/LPRng.html
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Requires:       LPRng 
+Requires:       lpr 
 
 %define	        lpfiltersdir lpfilters
 
