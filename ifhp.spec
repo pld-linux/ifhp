@@ -2,13 +2,13 @@
 Summary:	Print filter for HP postscript, text, and other printers
 Summary(pl):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
-Version:	3.5.16
+Version:	3.5.17
 Release:	1
 License:	GPL or Artistic
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com/
 Group:		Applications/System
 Source0:	ftp://ftp.lprng.com/pub/LPRng/ifhp/%{name}-%{version}.tgz
-# Source0-md5:	f5f3a9bd500084bc45ec9f1e16115cab
+# Source0-md5:	e187e7cf684130c14a0fb013de5b7323
 Source1:	%{name}.conf
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-trim_cmdline.patch
