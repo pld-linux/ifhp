@@ -1,4 +1,5 @@
-Summary:	print filter for hp postscript, text, and other printers
+Summary:	Print filter for hp postscript, text, and other printers
+Summary(pl):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
 Version:	3.4.4
 Release:	2
@@ -12,6 +13,8 @@ Source1:	%{name}.conf
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-trim_cmdline.patch
 URL:		http://www.astart.com/LPRng/LPRng.html
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	gettext-devel
 Requires:	lpr
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -27,6 +30,15 @@ printers, supports conversion from one format to another, and can be
 used as a stand-alone print utility.
 
 It is the primary supported print filter for the LPRng print spooler.
+
+%description -l pl
+ifhp jest wszechstronnym filtrem wydruków do menad¿erów wydruku
+bazuj±cych na BSD. Mo¿e byæ skonfigurowany do obs³ugi tekstu,
+PostScriptu, PJL, PCL i drukarek rasterowych, obs³uguje konwersjê
+miêdzy formatami, mo¿e byæ u¿ywany jako samodzielne narzêdzie do
+drukowania.
+
+Jest to podstawowy filtr dla menad¿era LPRng.
 
 %prep
 %setup -q
