@@ -1,0 +1,88 @@
+diff -Nru ifhp-3.4.2/Makefile.in ifhp-3.4.2.new/Makefile.in
+--- ifhp-3.4.2/Makefile.in	Sun Oct 29 22:10:57 2000
++++ ifhp-3.4.2.new/Makefile.in	Thu Nov  2 20:03:04 2000
+@@ -18,7 +18,6 @@
+ INSTALLCMD=@INSTALL@
+ FILTER_DIR=@FILTER_DIR@
+ CONFIG_FILE=@CONFIG_FILE@
+-LOCALEDIR=@LOCALEDIR@
+ USE_NLS=@USE_NLS@
+ SHELL=@SHELL@
+ 
+@@ -49,7 +48,7 @@
+ # we use this to do recursion to specified directories
+ $(ALLDIRS): FRC
+ 	if [ "$@" != po -o "$(USE_NLS)" != "no" ] ; then \
+-		cd $@; $(MAKE) localedir=${DESTDIR}${LOCALEDIR} \
++		cd $@; $(MAKE) \
+ 		DESTDIR=$(DESTDIR) $(MAKETARGET) ; \
+ 	fi
+ 
+diff -Nru ifhp-3.4.2/configure.in ifhp-3.4.2.new/configure.in
+--- ifhp-3.4.2/configure.in	Thu Nov  2 20:02:34 2000
++++ ifhp-3.4.2.new/configure.in	Thu Nov  2 20:02:10 2000
+@@ -17,7 +17,6 @@
+ AC_DEFINE_UNQUOTED(VERSION, "$VERSION")
+ AC_SUBST(PACKAGE)
+ AC_SUBST(VERSION)
+-ALL_LINGUAS="fr"
+ 
+ AC_PREFIX_DEFAULT(/usr/local)
+ AC_SUBST(INSTALL)
+@@ -41,13 +40,6 @@
+ WITH_LDOPTS dnl
+ WITH_CPPOPTS dnl
+ 
+-if test -z "$LOCALEDIR" ; then
+-    LOCALEDIR='$(prefix)/share/locale'
+-fi;
+-
+-WITH_LOCALEDIR dnl
+-
+-
+ dnl --------------------------------------------------------------------------
+ dnl ------- XXXXXX START OF OPTIONS ------------------------------------------
+ 
+@@ -1085,37 +1077,13 @@
+ 
+ dnl ----------------- Option for enabling GNU gettext --------------------
+ 
++ALL_LINGUAS="fr"
+ AM_GNU_GETTEXT
+ 
+- if test "${USE_NLS}" = yes; then
+-   AC_MSG_CHECKING([Using NLS, localedir ${LOCALEDIR}, ])
+-   if test "${USE_INCLUDED_LIBINTL}" = yes ; then
+-	  AC_MSG_RESULT([using the local libintl installation])
+-	  if test -f ${srcdir}/${nls_cv_header_libgt} ; then
+-		INTLINCS='-I $(top_builddir)/intl'
+-	  else
+-		AC_MSG_RESULT([NLS enabled, local libintl support is needed, and])
+-		AC_MSG_RESULT([ source code is not in the ${srcdir}/intl directory.])
+-		AC_MSG_RESULT([ See ${srcdir}/ABOUT-NLS.LPRng in the LPRng distribution for details.])
+-		exit 1;
+-	  fi
+-   else
+-	  AC_MSG_RESULT([using -lintl])
+-	  INTLLIBS=-lintl
+-   fi
+- else
+-   AC_MSG_RESULT([No NLS])
+- fi   
+- if test "${USE_NLS}" != yes -o "${USE_INCLUDED_LIBINTL}" != yes ; then
+-	nls_cv_header_intl=
+-	nls_cv_header_libgt=
+- fi
+- if test "$XGETTEXT" = "" ; then
+-	 XGETTEXT=xgettext;
+- fi
+- AC_MSG_RESULT(using XGETTEXT $XGETTEXT)
+- AC_SUBST(INTLINCS)
+- AC_SUBST(INTLLIBS)
++if test "${USE_NLS}" = yes; then
++  INTLINCS='-I $(top_builddir)/intl'
++fi
++AC_SUBST(INTLINCS)
+ 
+ dnl ----------------------------------------------------------------------------
+ dnl ----------------- END OF GENERAL CONFIGURATION   ---------------------------
