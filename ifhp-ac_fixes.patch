@@ -159,3 +159,15 @@
  	done ;
  	for i in $(INSTALL) ; do \
  		$(INSTALLCMD) -m 755 $$i ${DESTDIR}$(FILTER_DIR)/`basename $$i`; \
+--- ifhp-3.5.10/Makefile.in~	Sat Jul  6 22:10:28 2002
++++ ifhp-3.5.10/Makefile.in	Tue Jul 30 20:33:15 2002
+@@ -49,8 +49,7 @@
+ # we use this to do recursion to specified directories
+ $(ALLDIRS):
+ 	if [ "$@" != po -o "$(USE_NLS)" != "no" ] ; then \
+-		cd $@; $(MAKE) localedir=${DESTDIR}${LOCALEDIR} \
+-		DESTDIR=$(DESTDIR) $(MAKETARGET) ; \
++		cd $@; $(MAKE) DESTDIR=$(DESTDIR) $(MAKETARGET) ; \
+ 	fi
+ 
+ ###############################################################################
