@@ -38,7 +38,7 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_libdir},%{_mandir}/man8}
 
 %{__make} INSTALL_PREFIX=$RPM_BUILD_ROOT install
 mv -f $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf.sample .
-mv -f %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf
 
 gzip -9nf HOWTO/*.html README ifhp.conf.sample \
 	$RPM_BUILD_ROOT%{_mandir}/man8/*
