@@ -1,7 +1,7 @@
 Summary:	print filter for hp postscript, text, and other printers
 Name:		ifhp
 Version:	3.4.4
-Release:	1
+Release:	2
 License:	GPL and Artistic License
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com
 Group:		Applications/System
@@ -10,6 +10,7 @@ Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.astart.com/pub/LPRng/FILTERS/%{name}-%{version}.tgz
 Source1:	%{name}.conf
 Patch0:		%{name}-ac_fixes.patch
+Patch1:		%{name}-trim_cmdline.patch
 URL:		http://www.astart.com/LPRng/LPRng.html
 BuildRequires:	gettext-devel
 Requires:	lpr
@@ -29,7 +30,8 @@ It is the primary supported print filter for the LPRng print spooler.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 aclocal
