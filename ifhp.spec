@@ -1,16 +1,17 @@
 Summary:	Print filter for hp postscript, text, and other printers
 Summary(pl):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
-Version:	3.5.10
-Release:	2
+Version:	3.5.11
+Release:	1
 License:	GPL/Artistic
-Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com
+Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com/
 Group:		Applications/System
 Source0:	ftp://ftp.lprng.com/pub/LPRng/ifhp/%{name}-%{version}.tgz
-# Source0-md5:	669c877b00e9599f1e0306d79cad3425
+# Source0-md5:	4497bcc307875423f05cd1e50b20fa6d
 Source1:	%{name}.conf
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-trim_cmdline.patch
+Patch2:		%{name}-types.patch
 URL:		http://www.lprng.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -18,8 +19,8 @@ BuildRequires:	gettext-devel
 BuildRequires:	ghostscript
 Requires:	/usr/bin/lpr
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-Obsoletes:	rhs-printfilters
 Obsoletes:	apsfilter
+Obsoletes:	rhs-printfilters
 
 %define	        lpfiltersdir lpfilters
 
@@ -44,6 +45,7 @@ Jest to podstawowy filtr dla zarz±dcy drukowania LPRng.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__gettextize}
@@ -63,6 +65,9 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 mv -f $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf.sample .
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf
 
+for f in $RPM_BUILD_ROOT%{_datadir}/locale/fr/LC_MESSAGES/ifhp.mo ; do
+	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
+done
 #%find_lang %{name}
 
 %clean
@@ -71,7 +76,8 @@ rm -rf $RPM_BUILD_ROOT
 #%files -f %{name}.lang
 %files
 %defattr(644,root,root,755)
-%doc README ifhp.conf.sample HOWTO/*.html
+%doc README ifhp.conf.sample DOCS/*.{html,jpg}
+# HOWTO/*.html
 %attr(755,root,root) %{_libdir}/%{lpfiltersdir}/*
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %{_mandir}/*/*
