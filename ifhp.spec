@@ -1,13 +1,14 @@
+%include	/usr/lib/rpm/macros.perl
 Summary:	Print filter for hp postscript, text, and other printers
 Summary(pl):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
-Version:	3.5.12
+Version:	3.5.13
 Release:	1
 License:	GPL/Artistic
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com/
 Group:		Applications/System
 Source0:	ftp://ftp.lprng.com/pub/LPRng/ifhp/%{name}-%{version}.tgz
-# Source0-md5:	1e28641aaacb4120bac05f8cd3d5ea8a
+# Source0-md5:	b79d51b3abbc02772dae900eae3f93c1
 Source1:	%{name}.conf
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-trim_cmdline.patch
@@ -16,12 +17,16 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	ghostscript
+BuildRequires:	perl-modules
+BuildRequires:	rpm-perlprov
 Requires:	/usr/bin/lpr
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	apsfilter
 Obsoletes:	rhs-printfilters
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define	        lpfiltersdir lpfilters
+# only few scripts need it
+%define		_noautoreq	'perl(Net::SNMP)'
 
 %description
 ifhp is a highly versatile print filter for BSD based print spoolers.
@@ -77,6 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README ifhp.conf.sample DOCS/*.{html,jpg}
 # HOWTO/*.html
+%attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/%{lpfiltersdir}/*
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %{_mandir}/*/*
