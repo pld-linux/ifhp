@@ -1,17 +1,16 @@
 Summary:	Print filter for hp postscript, text, and other printers
 Summary(pl):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
-Version:	3.5.11
+Version:	3.5.12
 Release:	1
 License:	GPL/Artistic
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com/
 Group:		Applications/System
 Source0:	ftp://ftp.lprng.com/pub/LPRng/ifhp/%{name}-%{version}.tgz
-# Source0-md5:	4497bcc307875423f05cd1e50b20fa6d
+# Source0-md5:	1e28641aaacb4120bac05f8cd3d5ea8a
 Source1:	%{name}.conf
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-trim_cmdline.patch
-Patch2:		%{name}-types.patch
 URL:		http://www.lprng.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -45,14 +44,14 @@ Jest to podstawowy filtr dla zarz±dcy drukowania LPRng.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__gettextize}
 %{__aclocal}
 %{__autoconf}
 %configure \
-	--with-filterdir=%{_libdir}/%{lpfiltersdir}
+	--with-filterdir=%{_libdir}/%{lpfiltersdir} \
+	--with-foomatic-rip=/usr/bin/foomatic-rip
 %{__make}
 
 %install
