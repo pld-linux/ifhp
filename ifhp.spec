@@ -30,13 +30,13 @@ used as a stand-alone print utility.
 It is the primary supported print filter for the LPRng print spooler.
 
 %description -l pl
-ifhp jest wszechstronnym filtrem wydruków do menad¿erów wydruku
-bazuj±cych na BSD. Mo¿e byæ skonfigurowany do obs³ugi tekstu,
-PostScriptu, PJL, PCL i drukarek rasterowych, obs³uguje konwersjê
+ifhp jest wszechstronnym filtrem wydruków dla opartych na BSD
+zarz±dców wydruku. Mo¿e byæ skonfigurowany do obs³ugi tekstu,
+PostScriptu, PJL, PCL i drukarek rastrowych, obs³uguje konwersjê
 miêdzy formatami, mo¿e byæ u¿ywany jako samodzielne narzêdzie do
 drukowania.
 
-Jest to podstawowy filtr dla menad¿era LPRng.
+Jest to podstawowy filtr dla zarz±dcy drukowania LPRng.
 
 %prep
 %setup -q
