@@ -1,7 +1,7 @@
 Summary:	print filter for hp postscript, text, and other printers
 Name:		ifhp
 Version:	3.3.21
-Release:	4
+Release:	5
 License:	GPL and Artistic License
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com
 Group:		Utilities/System
@@ -9,6 +9,8 @@ Group(pl):	Narzêdzia/System
 Source0:	ftp://ftp.astart.com/pub/LPRng/FILTERS/%{name}-%{version}.tgz
 Source1:	%{name}.conf
 Requires:	lpr
+Obsoletes:	rhs-printfilters
+Obsoletes:	apsfilter
 URL:		http://www.astart.com/LPRng.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
