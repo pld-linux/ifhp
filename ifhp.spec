@@ -14,6 +14,7 @@ URL:		http://www.lprng.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
+BuildRequires:	ghostscript
 Requires:	/usr/bin/lpr
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Obsoletes:	rhs-printfilters
