@@ -1,0 +1,11 @@
+--- ifhp-3.4.4/src/ifhp.c.orig	Wed Dec 27 01:01:54 2000
++++ ifhp-3.4.4/src/ifhp.c	Sun Mar 25 00:52:30 2001
+@@ -2078,7 +2078,7 @@
+ 						if( value[0] == '[' ){
+ 							++value;
+ 							while(isspace(cval(value))) ++value;
+-							if( t > value && cval(t-1) == ']' ) *t = 0;
++							if( t > value && cval(t-1) == ']' ) *(t-1) = 0;
+ 							for( t = value+strlen(value); t > value && isspace(cval(t-1)); --t );
+ 						}
+ 					}
