@@ -1,6 +1,6 @@
 Summary:	print filter for hp postscript, text, and other printers
 Name:		ifhp
-Version:	3.4.1
+Version:	3.4.2
 Release:	1
 License:	GPL and Artistic License
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com
