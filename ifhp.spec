@@ -4,14 +4,15 @@ Version:	3.4.1
 Release:	1
 License:	GPL and Artistic License
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com
-Group:		Utilities/System
-Group(pl):	Narzêdzia/System
+Group:		Applications/System
+Group(de):	Applikationen/System
+Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.astart.com/pub/LPRng/FILTERS/%{name}-%{version}.tgz
 Source1:	%{name}.conf
+URL:		http://www.astart.com/LPRng/LPRng.html
 Requires:	lpr
 Obsoletes:	rhs-printfilters
 Obsoletes:	apsfilter
-URL:		http://www.astart.com/LPRng.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define	        lpfiltersdir lpfilters
@@ -28,8 +29,8 @@ It is the primary supported print filter for the LPRng print spooler.
 %setup -q
 
 %build
-LDFLAGS="-s"; export LDFLAGS
-%configure --with-filterdir=%{_libdir}/%{lpfiltersdir}
+%configure \
+	--with-filterdir=%{_libdir}/%{lpfiltersdir}
 %{__make}
 
 %install
@@ -40,8 +41,7 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_libdir},%{_mandir}/man8}
 mv -f $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf.sample .
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf
 
-gzip -9nf HOWTO/*.html README ifhp.conf.sample \
-	$RPM_BUILD_ROOT%{_mandir}/man8/*
+gzip -9nf HOWTO/*.html README ifhp.conf.sample
 
 %clean
 rm -rf $RPM_BUILD_ROOT
