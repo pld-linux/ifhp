@@ -9,6 +9,9 @@ Source0:	ftp://ftp.astart.com/pub/LPRng/LPRng/FILTERS/%{name}-%{version}.tgz
 URL:		http://www.astart.com/LPRng.html
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Requires:       LPRng 
+
+%define	        lpfiltersdir lpfilters
 
 %description
 ifhp is a highly versatile print filter for BSD based print spoolers.
@@ -23,12 +26,12 @@ It is the primary supported print filter for the LPRng print spooler.
 
 %build
 LDFLAGS="-s"; export LDFLAGS
-%configure
+%configure --with-filterdir=%{_libdir}/%{lpfiltersdir}
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_libexecdir},%{_mandir}/man8}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_libdir},%{_mandir}/man8}
 
 %{__make} INSTALL_PREFIX=$RPM_BUILD_ROOT install
 mv -f $RPM_BUILD_ROOT/%{_sysconfdir}/ifhp.conf.sample .
@@ -43,6 +46,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz
 %doc HOWTO/*.gz
-%attr(755,root,root)  %{_libexecdir}/filters/*
-%config(noreplace) %{_sysconfdir}/ifhp.conf
+%attr(755,root,root)  %{_libdir}/%{lpfiltersdir}/*
+%config(noreplace) %{_sysconfdir}/%{name}.conf
 %{_mandir}/*/*
