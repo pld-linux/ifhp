@@ -6,8 +6,6 @@ Release:	2
 License:	GPL and Artistic License
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com
 Group:		Applications/System
-Group(de):	Applikationen/System
-Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.astart.com/pub/LPRng/FILTERS/%{name}-%{version}.tgz
 Source1:	%{name}.conf
 Patch0:		%{name}-ac_fixes.patch
