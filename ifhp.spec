@@ -1,16 +1,14 @@
 Summary:	print filter for hp postscript, text, and other printers
 Name:		ifhp
 Version:	3.3.21
-Release:	3
+Release:	4
 License:	GPL and Artistic License
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com
 Group:		Utilities/System
 Group(pl):	Narzêdzia/System
 Source0:	ftp://ftp.astart.com/pub/LPRng/FILTERS/%{name}-%{version}.tgz
 Source1:	%{name}.conf
-Source2:	%{name}-trofftops.sh
 Requires:	lpr
-Requires:	mktemp
 URL:		http://www.astart.com/LPRng.html
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -34,12 +32,11 @@ LDFLAGS="-s"; export LDFLAGS
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_libdir},%{_mandir}/man8,%{_bindir}}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_libdir},%{_mandir}/man8}
 
 %{__make} INSTALL_PREFIX=$RPM_BUILD_ROOT install
 mv -f $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf.sample .
 mv -f %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf
-mv -f %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/trofftops
 
 gzip -9nf HOWTO/*.html README ifhp.conf.sample \
 	$RPM_BUILD_ROOT%{_mandir}/man8/*
@@ -52,6 +49,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.gz
 %doc HOWTO/*.gz
 %attr(755,root,root) %{_libdir}/%{lpfiltersdir}/*
-%attr(755,root,root) %{_bindir}/*
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %{_mandir}/*/*
