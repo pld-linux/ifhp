@@ -169,7 +169,7 @@
 -		cd $@; $(MAKE) localedir=${DESTDIR}${LOCALEDIR} \
 -		DESTDIR=$(DESTDIR) $(MAKETARGET) ; \
 -	fi
-+	cd $@; $(MAKE) DESTDIR=${DESTDIR}
++	cd $@; $(MAKE) DESTDIR=${DESTDIR} $(MAKETARGET)
  
  ###############################################################################
  
