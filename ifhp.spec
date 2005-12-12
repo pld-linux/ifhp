@@ -17,9 +17,9 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	ghostscript
+BuildRequires:	perl-Net-SNMP
 BuildRequires:	perl-modules
 BuildRequires:	rpm-perlprov
-BuildRequires:	perl-Net-SNMP
 Requires:	/usr/bin/lpr
 Obsoletes:	apsfilter
 Obsoletes:	rhs-printfilters
@@ -87,5 +87,5 @@ rm -rf $RPM_BUILD_ROOT
 # HOWTO/*.html
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/%{lpfiltersdir}/*
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.conf
 %{_mandir}/man8/*
