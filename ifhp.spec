@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	Print filter for HP postscript, text, and other printers
-Summary(pl):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
+Summary(pl.UTF-8):   Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
 Version:	3.5.20
 Release:	2
@@ -36,14 +36,14 @@ used as a stand-alone print utility.
 
 It is the primary supported print filter for the LPRng print spooler.
 
-%description -l pl
-ifhp jest wszechstronnym filtrem wydruków dla opartych na BSD
-zarz±dców wydruku. Mo¿e byæ skonfigurowany do obs³ugi tekstu,
-PostScriptu, PJL, PCL i drukarek rastrowych, obs³uguje konwersjê
-miêdzy formatami, mo¿e byæ u¿ywany jako samodzielne narzêdzie do
+%description -l pl.UTF-8
+ifhp jest wszechstronnym filtrem wydrukÃ³w dla opartych na BSD
+zarzÄ…dcÃ³w wydruku. MoÅ¼e byÄ‡ skonfigurowany do obsÅ‚ugi tekstu,
+PostScriptu, PJL, PCL i drukarek rastrowych, obsÅ‚uguje konwersjÄ™
+miÄ™dzy formatami, moÅ¼e byÄ‡ uÅ¼ywany jako samodzielne narzÄ™dzie do
 drukowania.
 
-Jest to podstawowy filtr dla zarz±dcy drukowania LPRng.
+Jest to podstawowy filtr dla zarzÄ…dcy drukowania LPRng.
 
 %prep
 %setup -q
