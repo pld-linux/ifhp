@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	Print filter for HP postscript, text, and other printers
-Summary(pl.UTF-8):   Filtr wydruku HP postscriptu, tekstu i innych drukarek
+Summary(pl.UTF-8):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
 Version:	3.5.20
 Release:	2
