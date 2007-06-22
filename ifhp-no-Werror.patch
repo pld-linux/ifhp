@@ -1,0 +1,13 @@
+--- ifhp-3.5.20/configure.in~	2007-06-22 13:21:31.000000000 +0200
++++ ifhp-3.5.20/configure.in	2007-06-22 13:26:21.000000000 +0200
+@@ -1225,8 +1225,8 @@
+ 
+ 
+ if test "$ac_cv_prog_gcc" = yes; then
+-	CPPFLAGS="$CPPFLAGS -W -Wall -Werror -Wno-unused "
+-	CFLAGS="$CFLAGS -W -Wall -Werror -Wno-unused "
++	CPPFLAGS="$CPPFLAGS -W -Wall -Wno-unused "
++	CFLAGS="$CFLAGS -W -Wall -Wno-unused "
+ fi;
+ 
+ AC_OUTPUT(
