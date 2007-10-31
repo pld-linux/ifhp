@@ -3,7 +3,7 @@ Summary:	Print filter for HP postscript, text, and other printers
 Summary(pl.UTF-8):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
 Version:	3.5.20
-Release:	3
+Release:	4
 License:	GPL or Artistic
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com/
 Group:		Applications/System
@@ -12,6 +12,7 @@ Source0:	ftp://ftp.lprng.com/pub/LPRng/ifhp/%{name}-%{version}.tgz
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-trim_cmdline.patch
 Patch2:		%{name}-no-Werror.patch
+Patch3:		%{name}-a4.patch
 URL:		http://www.lprng.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -52,11 +53,7 @@ Jest to podstawowy filtr dla zarządcy drukowania LPRng.
 %patch1 -p1
 %patch2 -p1
 
-rm -rf autom4te.cache
-
 %build
-%{__gettextize}
-%{__aclocal}
 %{__autoconf}
 %configure \
 	--with-filterdir=%{_libdir}/%{lpfiltersdir} \
