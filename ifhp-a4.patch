@@ -1,0 +1,11 @@
+--- ifhp-3.5.20/ifhp.conf.in~	2004-10-05 17:50:12.000000000 +0200
++++ ifhp-3.5.20/ifhp.conf.in	2007-10-31 15:49:51.000000000 +0100
+@@ -896,7 +896,7 @@
+  a0 a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 b0 b1 b2 b3 b4 b5
+  archA archB archC archD archE flsa flse halfletter
+  note letter legal 11x17 ledger tabloid
+-papersize_default= letter
++papersize_default= a4
+ 
+ 
+ ## START PJL configuration
