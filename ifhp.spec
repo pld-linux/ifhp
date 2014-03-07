@@ -1,23 +1,20 @@
-#
-# WARNING;
-#	DO NOT update this to 3.5.22, that release is broken.
-#
+# WARNING: broken release (how?)
 %include	/usr/lib/rpm/macros.perl
 Summary:	Print filter for HP postscript, text, and other printers
 Summary(pl.UTF-8):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
-Version:	3.5.20
-Release:	6
+Version:	3.5.22
+Release:	1.1
 License:	GPL v2 or Artistic
 Group:		Applications/System
 Source0:	http://www.lprng.com/DISTRIB/ifhp/%{name}-%{version}.tgz
-# Source0-md5:	25b151b3adb953b571e6b0a7cc9937f3
+# Source0-md5:	450b24f44dffbfda84a58ce5067ab1ad
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-trim_cmdline.patch
 Patch2:		%{name}-no-Werror.patch
 Patch3:		%{name}-a4.patch
 URL:		http://www.lprng.com/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
 BuildRequires:	gettext-tools
 BuildRequires:	ghostscript
@@ -82,7 +79,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 # some random junk and docs
 %{__rm} $RPM_BUILD_ROOT%{lpfiltersdir}/UTILS/{400095.ppd,HP2500CJ.PPD,Watermarks,accounting.sh.in,extract_pjl,fixupdate.in,install-sh,mkinstalldirs,sendhp.sh.in,stopstr.c,supported.in,test1,use_snmp_for_status}
 
-# not installed
+# only empty file installed
 #%find_lang %{name}
 
 %clean
@@ -91,7 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 #%files -f %{name}.lang
 %files
 %defattr(644,root,root,755)
-%doc README ifhp.conf.sample DOCS/*.{html,jpg}
+%doc CHANGES README* ifhp.conf.sample DOCS/*.{html,jpg} UTILS/{Watermarks,use_snmp_for_status}
 # HOWTO/*.html
 %attr(755,root,root) %{_bindir}/extract_pjl
 %attr(755,root,root) %{_bindir}/snmp_printer_status
@@ -110,5 +107,6 @@ rm -rf $RPM_BUILD_ROOT
 %{lpfiltersdir}/UTILS/ellipse.ps
 %{lpfiltersdir}/UTILS/one.*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.conf
-%{_mandir}/man8/ifhp.8*
-%{_mandir}/man8/textps.8*
+%{_mandir}/man1/ifhp.1*
+%{_mandir}/man1/snmp_printer_status.1*
+%{_mandir}/man1/textps.1*
