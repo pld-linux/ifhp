@@ -1,5 +1,5 @@
---- ifhp-3.5.11/configure.in.orig	2003-09-05 22:05:42.000000000 +0200
-+++ ifhp-3.5.11/configure.in	2003-10-06 21:15:24.731523552 +0200
+--- ifhp-3.5.22/configure.ac.orig	2003-09-05 22:05:42.000000000 +0200
++++ ifhp-3.5.22/configure.ac	2003-10-06 21:15:24.731523552 +0200
 @@ -119,22 +119,7 @@
  AC_MSG_RESULT($FONT_DIR)
  AC_SUBST(FONT_DIR)
