@@ -2,18 +2,19 @@
 Summary:	Print filter for HP postscript, text, and other printers
 Summary(pl.UTF-8):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
-Version:	3.5.22
-Release:	1
+Version:	3.5.20
+Release:	4
 License:	GPL or Artistic
+Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com/
 Group:		Applications/System
 Source0:	ftp://ftp.lprng.com/pub/LPRng/ifhp/%{name}-%{version}.tgz
-# Source0-md5:	450b24f44dffbfda84a58ce5067ab1ad
+# Source0-md5:	25b151b3adb953b571e6b0a7cc9937f3
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-trim_cmdline.patch
 Patch2:		%{name}-no-Werror.patch
 Patch3:		%{name}-a4.patch
 URL:		http://www.lprng.com/
-BuildRequires:	autoconf >= 2.50
+BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
 BuildRequires:	ghostscript
@@ -21,13 +22,11 @@ BuildRequires:	perl-Net-SNMP
 BuildRequires:	perl-modules
 BuildRequires:	rpm-perlprov
 Requires:	/usr/bin/lpr
-Suggests:	a2ps
-Suggests:	ghostscript
 Obsoletes:	apsfilter
 Obsoletes:	rhs-printfilters
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define	        lpfiltersdir	%{_libdir}/lpfilters
+%define	        lpfiltersdir lpfilters
 # only few scripts need it
 %define		_noautoreq	'perl(Net::SNMP)'
 
@@ -57,10 +56,7 @@ Jest to podstawowy filtr dla zarządcy drukowania LPRng.
 %build
 %{__autoconf}
 %configure \
-	A2PS=/usr/bin/a2ps \
-	GS=/usr/bin/gs \
-	--disable-gscheck \
-	--with-filterdir=%{lpfiltersdir} \
+	--with-filterdir=%{_libdir}/%{lpfiltersdir} \
 	--with-foomatic-rip=/usr/bin/foomatic-rip \
 	--with-pagesize=a4
 %{__make}
@@ -74,12 +70,8 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
 mv -f $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf.sample .
 
-# some random junk and docs
-%{__rm} $RPM_BUILD_ROOT%{lpfiltersdir}/UTILS/{400095.ppd,HP2500CJ.PPD,Watermarks,accounting.sh.in,extract_pjl,fixupdate.in,install-sh,mkinstalldirs,sendhp.sh.in,stopstr.c,supported.in,test1,use_snmp_for_status}
-
-# cleanup empty locales
 for f in $RPM_BUILD_ROOT%{_datadir}/locale/fr/LC_MESSAGES/ifhp.mo ; do
-	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && %{__rm} $f
+	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
 done
 #%find_lang %{name}
 
@@ -89,25 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 #%files -f %{name}.lang
 %files
 %defattr(644,root,root,755)
-%doc CHANGES README* ifhp.conf.sample DOCS/*.{html,jpg} UTILS/{Watermarks,use_snmp_for_status}
+%doc README ifhp.conf.sample DOCS/*.{html,jpg}
 # HOWTO/*.html
-%attr(755,root,root) %{_bindir}/extract_pjl
-%attr(755,root,root) %{_bindir}/snmp_printer_status
-%attr(755,root,root) %{lpfiltersdir}/extract_pjl
-%attr(755,root,root) %{lpfiltersdir}/ifhp
-%attr(755,root,root) %{lpfiltersdir}/snmp_printer_status
-%attr(755,root,root) %{lpfiltersdir}/textps
-%attr(755,root,root) %{lpfiltersdir}/wrapper
-%{lpfiltersdir}/snmp_printer_status.conf
-%dir %{lpfiltersdir}/UTILS
-%attr(755,root,root) %{lpfiltersdir}/UTILS/accounting.sh
-%attr(755,root,root) %{lpfiltersdir}/UTILS/fixupdate
-%attr(755,root,root) %{lpfiltersdir}/UTILS/phaser5400_snmp_mib_query
-%attr(755,root,root) %{lpfiltersdir}/UTILS/sendhp.sh
-%attr(755,root,root) %{lpfiltersdir}/UTILS/supported
-%{lpfiltersdir}/UTILS/ellipse.ps
-%{lpfiltersdir}/UTILS/one.*
+%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_libdir}/%{lpfiltersdir}/*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.conf
-%{_mandir}/man1/ifhp.1*
-%{_mandir}/man1/snmp_printer_status.1*
-%{_mandir}/man1/textps.1*
+%{_mandir}/man8/*
