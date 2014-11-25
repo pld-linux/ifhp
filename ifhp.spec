@@ -1,9 +1,13 @@
+#
+# WARNING;
+#	DO NOT update this to 3.5.22, that release is broken.
+#
 %include	/usr/lib/rpm/macros.perl
 Summary:	Print filter for HP postscript, text, and other printers
 Summary(pl.UTF-8):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
 Version:	3.5.20
-Release:	4
+Release:	5
 License:	GPL or Artistic
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com/
 Group:		Applications/System
