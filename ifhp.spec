@@ -69,7 +69,7 @@ Jest to podstawowy filtr dla zarządcy drukowania LPRng.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 mv -f $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf.sample .
