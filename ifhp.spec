@@ -20,7 +20,7 @@ Patch3:		%{name}-a4.patch
 URL:		http://www.lprng.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	ghostscript
 BuildRequires:	perl-Net-SNMP
 BuildRequires:	perl-modules
