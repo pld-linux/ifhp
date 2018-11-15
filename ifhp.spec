@@ -8,7 +8,7 @@ Summary(pl.UTF-8):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
 Version:	3.5.20
 Release:	5
-License:	GPL or Artistic
+License:	GPL v2 or Artistic
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com/
 Group:		Applications/System
 Source0:	http://www.lprng.com/DISTRIB/ifhp/%{name}-%{version}.tgz
@@ -26,11 +26,13 @@ BuildRequires:	perl-Net-SNMP
 BuildRequires:	perl-modules
 BuildRequires:	rpm-perlprov
 Requires:	/usr/bin/lpr
+Suggests:	a2ps
+Suggests:	ghostscript
 Obsoletes:	apsfilter
 Obsoletes:	rhs-printfilters
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define	        lpfiltersdir lpfilters
+%define	        lpfiltersdir	%{_libdir}/lpfilters
 # only few scripts need it
 %define		_noautoreq	'perl(Net::SNMP)'
 
@@ -60,7 +62,11 @@ Jest to podstawowy filtr dla zarządcy drukowania LPRng.
 %build
 %{__autoconf}
 %configure \
-	--with-filterdir=%{_libdir}/%{lpfiltersdir} \
+	A2PS=/usr/bin/a2ps \
+	GS=/usr/bin/gs \
+	--disable-gscheck \
+	--with-filterdir=%{lpfiltersdir} \
+	--with-fontdir=%{lpfiltersdir}/fonts \
 	--with-foomatic-rip=/usr/bin/foomatic-rip \
 	--with-pagesize=a4
 %{__make}
@@ -72,11 +78,12 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 %{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-mv -f $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf.sample .
+%{__mv} $RPM_BUILD_ROOT%{_sysconfdir}/ifhp.conf.sample .
 
-for f in $RPM_BUILD_ROOT%{_datadir}/locale/fr/LC_MESSAGES/ifhp.mo ; do
-	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
-done
+# some random junk and docs
+%{__rm} $RPM_BUILD_ROOT%{lpfiltersdir}/UTILS/{400095.ppd,HP2500CJ.PPD,Watermarks,accounting.sh.in,extract_pjl,fixupdate.in,install-sh,mkinstalldirs,sendhp.sh.in,stopstr.c,supported.in,test1,use_snmp_for_status}
+
+# not installed
 #%find_lang %{name}
 
 %clean
@@ -87,7 +94,22 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README ifhp.conf.sample DOCS/*.{html,jpg}
 # HOWTO/*.html
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/%{lpfiltersdir}/*
+%attr(755,root,root) %{_bindir}/extract_pjl
+%attr(755,root,root) %{_bindir}/snmp_printer_status
+%attr(755,root,root) %{lpfiltersdir}/extract_pjl
+%attr(755,root,root) %{lpfiltersdir}/ifhp
+%attr(755,root,root) %{lpfiltersdir}/snmp_printer_status
+%attr(755,root,root) %{lpfiltersdir}/textps
+%attr(755,root,root) %{lpfiltersdir}/wrapper
+%{lpfiltersdir}/snmp_printer_status.conf
+%dir %{lpfiltersdir}/UTILS
+%attr(755,root,root) %{lpfiltersdir}/UTILS/accounting.sh
+%attr(755,root,root) %{lpfiltersdir}/UTILS/fixupdate
+%attr(755,root,root) %{lpfiltersdir}/UTILS/phaser5400_snmp_mib_query
+%attr(755,root,root) %{lpfiltersdir}/UTILS/sendhp.sh
+%attr(755,root,root) %{lpfiltersdir}/UTILS/supported
+%{lpfiltersdir}/UTILS/ellipse.ps
+%{lpfiltersdir}/UTILS/one.*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}.conf
-%{_mandir}/man8/*
+%{_mandir}/man8/ifhp.8*
+%{_mandir}/man8/textps.8*
