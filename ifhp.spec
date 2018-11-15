@@ -11,7 +11,7 @@ Release:	5
 License:	GPL or Artistic
 Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com/
 Group:		Applications/System
-Source0:	ftp://ftp.lprng.com/pub/LPRng/ifhp/%{name}-%{version}.tgz
+Source0:	http://www.lprng.com/DISTRIB/ifhp/%{name}-%{version}.tgz
 # Source0-md5:	25b151b3adb953b571e6b0a7cc9937f3
 Patch0:		%{name}-ac_fixes.patch
 Patch1:		%{name}-trim_cmdline.patch
