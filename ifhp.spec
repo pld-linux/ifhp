@@ -7,9 +7,8 @@ Summary:	Print filter for HP postscript, text, and other printers
 Summary(pl.UTF-8):	Filtr wydruku HP postscriptu, tekstu i innych drukarek
 Name:		ifhp
 Version:	3.5.20
-Release:	5
+Release:	6
 License:	GPL v2 or Artistic
-Vendor:		Astart Technologies, San Diego, CA 92123 http://www.astart.com/
 Group:		Applications/System
 Source0:	http://www.lprng.com/DISTRIB/ifhp/%{name}-%{version}.tgz
 # Source0-md5:	25b151b3adb953b571e6b0a7cc9937f3
@@ -32,7 +31,7 @@ Obsoletes:	apsfilter
 Obsoletes:	rhs-printfilters
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define	        lpfiltersdir	%{_libdir}/lpfilters
+%define	        lpfiltersdir	%{_libexecdir}/lpfilters
 # only few scripts need it
 %define		_noautoreq	'perl(Net::SNMP)'
 
